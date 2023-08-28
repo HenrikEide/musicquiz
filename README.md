@@ -1,5 +1,5 @@
 # Musikkquiz
 
-## Set up
+### Set up
 
 -
