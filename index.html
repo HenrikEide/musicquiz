@@ -1,15 +1,12 @@
 <head>
   <meta charset="utf-8" />
-  <title>MusikkQuiz</title>
+  <title>MusicQuiz</title>
   <style>
     #divBakgrunn {
-      padding: 15px;
-      flex-direction: column;
+      padding: 5px;
       width: auto;
       margin: 0 auto;
       background-color: white;
-      border: 3px solid gray;
-      border-radius: 6px;
     }
     #divBilde {
       /* background-color: white */
@@ -20,10 +17,9 @@
     .divBoksGrønn {
       padding: 10px;
       position: absolute;
-      border: 2px dotted black;
-      width: 200px;
-      margin-right: 5px;
-      height: 50px;
+      border: 1px dotted black;
+      width: 165px;
+      height: 55px;
       margin-top: 20px;
       border-radius: 25px;
       background-color: rgb(255, 179, 255);
@@ -32,17 +28,17 @@
 
     .divBoksBlå {
       position: absolute;
-      border: 2px dotted black;
-      width: 225px;
+      border: 1px dotted black;
+      width: 185px;
       margin-right: 5px;
       height: 75px;
       margin-top: 10px;
       border-radius: 25px;
-      background-color: lightblue;
+      background-color: rgb(255, 219, 73);
       text-align: center;
     }
     audio {
-      width: 200px;
+      width: 140px;
       height: 20px;
       font-size: 5px;
     }
@@ -61,11 +57,16 @@
     #audio-player::-webkit-media-controls {
       background-color: rgb(156, 255, 156);
     }
+    h1 {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <div id="divBakgrunn">
-    <h1>Velg Kategori</h1>
+    <div id="header">
+      <h1>Quiz 1: Herlighet for en gjeng</h1>
+    </div>
     <div id="divBilde"></div>
   </div>
 
@@ -79,9 +80,11 @@
       "Geometriske figurer",
       "Ting som er lurt",
       "Enda flere kategorier? Står ikke været til påske",
+      "oh no",
+      "for mange kategorier",
     ];
     let songs = [];
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 8; i++) {
       temp = [];
       for (let j = 1; j <= 6; j++) {
         let songlink = "songs/kat" + i + "q" + j * 100 + ".mp3";
@@ -93,10 +96,10 @@
 
     let bokser = [];
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       let div = document.createElement("div");
       div.className = "divBoksBlå";
-      div.style.left = i * 230;
+      div.style.left = i * 190;
       div.style.top = 0;
       let text = "<h3>" + kategorier[i] + "</h3>";
       div.innerHTML = text;
@@ -110,11 +113,11 @@
       div.onclick = Trykk;
     }
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       for (let j = 1; j < 6; j++) {
         let div = document.createElement("div");
         div.className = "divBoksGrønn";
-        div.style.left = i * 230;
+        div.style.left = i * 190;
         div.style.top = j * 90;
 
         div.setAttribute("farge", "green");
@@ -154,10 +157,10 @@
       if (farge === "yellow") {
         rød(boks);
       }
-      if (farge === "blue") {
+      if (farge === "purple") {
         blå(boks);
       }
-      if (farge === "purple") {
+      if (farge === "blue") {
         grønn(boks);
       }
     }
@@ -177,7 +180,7 @@
     }
     function blå(boks) {
       boks.setAttribute("farge", "blue");
-      boks.style.backgroundColor = "blue";
+      boks.style.backgroundColor = "rgb(125, 125, 255)";
     }
   </script>
 </body>
