@@ -2,9 +2,15 @@
   <meta charset="utf-8" />
   <title>MusicQuiz</title>
   <style>
+    body {
+      height: 95vh;
+      max-height: 95vh;
+      overflow: hidden;
+    }
     #divBakgrunn {
       padding: 5px;
       width: auto;
+      height: 100%;
       margin: 0 auto;
       background-image: url("images/IMG_0166.jpeg");
       background-size: cover;
@@ -18,9 +24,9 @@
     .divBoksGrønn {
       padding: 10px;
       position: absolute;
-      border: 1px dotted black;
+      /* border: 1px dotted black; */
       width: 165px;
-      height: 60px;
+      height: 65px;
       margin-top: 20px;
       border-radius: 25px;
       background-color: rgb(255, 179, 255);
@@ -29,17 +35,16 @@
 
     .divBoksBlå {
       position: absolute;
-      border: 1px dotted black;
+      /* border: 1px dotted black; */
       width: 185px;
       margin-right: 5px;
       height: 75px;
-      margin-top: 10px;
       border-radius: 25px;
       background-color: rgb(255, 219, 73);
       text-align: center;
     }
     audio {
-      width: 155px;
+      width: 160px;
       height: 18px;
       font-size: 5px;
     }
@@ -58,8 +63,15 @@
     #audio-player::-webkit-media-controls {
       background-color: rgb(156, 255, 156);
     }
+    .header {
+      display: flex;
+    }
     h1 {
-      text-align: center;
+      width: fit-content;
+      translate: 100%;
+    }
+    h3 {
+      margin-top: 25px;
     }
   </style>
 </head>
@@ -101,7 +113,7 @@
       let div = document.createElement("div");
       div.className = "divBoksBlå";
       div.style.left = i * 190;
-      div.style.top = 0;
+      div.style.top = 15;
       let text = "<h3>" + kategorier[i] + "</h3>";
       div.innerHTML = text;
       div.setAttribute("farge", "blue");
@@ -119,7 +131,7 @@
         let div = document.createElement("div");
         div.className = "divBoksGrønn";
         div.style.left = i * 190;
-        div.style.top = j * 90;
+        div.style.top = j * 95;
 
         div.setAttribute("farge", "green");
         let text = "<h2>" + j * 100 + "</h2>";
