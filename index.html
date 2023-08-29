@@ -1,94 +1,20 @@
 <head>
   <meta charset="utf-8" />
   <title>MusicQuiz</title>
-  <style>
-    body {
-      height: 95vh;
-      max-height: 95vh;
-      overflow: hidden;
-    }
-    #divBakgrunn {
-      padding: 5px;
-      height: 700px;
-      width: 1520px;
-      background-image: url("images/IMG_0166.jpeg");
-      background-size: cover;
-    }
-    #divBilde {
-      /* background-color: white */
-      width: auto;
-      height: 100%;
-      position: relative;
-    }
-    .divBoksGrønn {
-      padding: 10px;
-      position: absolute;
-      /* border: 1px dotted black; */
-      width: 165px;
-      height: 65px;
-      margin-top: 20px;
-      border-radius: 25px;
-      background-color: rgb(255, 179, 255);
-      text-align: center;
-    }
-
-    .divBoksBlå {
-      position: absolute;
-      /* border: 1px dotted black; */
-      width: 185px;
-      margin-right: 5px;
-      height: 75px;
-      border-radius: 25px;
-      background-color: rgb(255, 219, 73);
-      text-align: center;
-    }
-    audio {
-      width: 160px;
-      height: 18px;
-      font-size: 5px;
-    }
-
-    button {
-      background-color: inherit;
-      height: 40px;
-      border: 0px;
-    }
-    buttonGul {
-      background-color: inherit;
-      height: 40px;
-      border: 0px;
-    }
-
-    #audio-player::-webkit-media-controls {
-      background-color: rgb(156, 255, 156);
-    }
-    .header {
-      display: flex;
-    }
-    h1 {
-      width: fit-content;
-      translate: 100%;
-    }
-    h3 {
-      margin-top: 25px;
-    }
-    h2 {
-      margin: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"></link>
 </head>
 <body>
   <div id="divBakgrunn">
     <div id="header">
       <h1>Quiz 1</h1>
     </div>
-    <div id="divBilde"></div>
+    <div id="quiz"></div>
   </div>
 
   <script>
-    let divBilde = document.getElementById("divBilde");
+    let quiz = document.getElementById("quiz");
 
-    let kategorier = [
+    const kategorier = [
       "Disney",
       "Barn igjen",
       "Nostalgi",
@@ -98,6 +24,13 @@
       "MGPjr",
       "Norsk på norsk",
     ];
+    const colors = {
+      green: ["yellow", "rgb(254, 254, 117)"],
+      yellow: ["purple", "rgb(205, 185, 245)"],
+      purple: ["blue", "rgb(155, 155, 255)"],
+      blue: ["pink", "rgb(158, 244, 152)"],
+      pink: ["green", "rgb(255, 179, 255)"],
+    };
     let songs = [];
     for (let i = 1; i <= 8; i++) {
       temp = [];
@@ -107,25 +40,17 @@
       }
       songs.push(temp);
     }
-    console.log(songs);
-
-    let bokser = [];
 
     for (let i = 0; i < 8; i++) {
       let div = document.createElement("div");
       div.className = "divBoksBlå";
       div.style.left = i * 190;
       div.style.top = 15;
-      let text = "<h3>" + kategorier[i] + "</h3>";
-      div.innerHTML = text;
+      div.innerHTML = "<h3>" + kategorier[i] + "</h3>";
       div.setAttribute("farge", "blue");
 
-      div.setAttribute("hor", i);
-      div.setAttribute("ver", 0);
-
-      divBilde.appendChild(div);
-      bokser.push(div);
       div.onclick = Trykk;
+      quiz.appendChild(div);
     }
 
     for (let i = 0; i < 8; i++) {
@@ -134,68 +59,31 @@
         div.className = "divBoksGrønn";
         div.style.left = i * 190;
         div.style.top = j * 95;
-
         div.setAttribute("farge", "green");
-        let text = "<h2>" + j * 100 + "</h2>";
-        let knapp = document.createElement("button");
-        knapp.innerHTML = text;
+        div.onclick = Trykk;
 
-        let audio = document.createElement("audio");
+		let audio = document.createElement("audio");
         audio.id = "audio-player";
         audio.controls = "controls";
         audio.src = songs[i][j - 1];
         audio.type = "audio/mpeg";
-
-        //div.innerHTML = text;
-
         div.appendChild(audio);
-        div.appendChild(knapp);
 
-        div.setAttribute("hor", i);
-        div.setAttribute("ver", j);
-
-        divBilde.appendChild(div);
-        bokser.push(div);
-
-        div.onclick = Trykk;
+        let poeng = document.createElement("div");
+        poeng.innerHTML = "<h2>" + j * 100 + "</h2>";
+		poeng.className = "points";
+        div.appendChild(poeng);
+		
+        quiz.appendChild(div);
       }
     }
 
     function Trykk(evt) {
-      let boks = evt.target;
-
+      let boks = evt.currentTarget;
       let farge = boks.getAttribute("farge");
-
-      if (farge === "green") {
-        gul(boks);
-      }
-      if (farge === "yellow") {
-        rød(boks);
-      }
-      if (farge === "purple") {
-        blå(boks);
-      }
-      if (farge === "blue") {
-        grønn(boks);
-      }
-    }
-
-    function grønn(boks) {
-      boks.setAttribute("farge", "green");
-      boks.style.backgroundColor = "rgb(158, 244, 152)";
-    }
-    function gul(boks) {
-      boks.setAttribute("farge", "yellow");
-      boks.style.backgroundColor = "rgb(254, 254, 117)";
-      boks.removeElement("audio");
-    }
-    function rød(boks) {
-      boks.setAttribute("farge", "purple");
-      boks.style.backgroundColor = "rgb(205, 185, 245)";
-    }
-    function blå(boks) {
-      boks.setAttribute("farge", "blue");
-      boks.style.backgroundColor = "rgb(155, 155, 255)";
+      const [colorName, color] = colors[farge];
+      boks.setAttribute("farge", colorName);
+      boks.style.backgroundColor = color;
     }
   </script>
 </body>

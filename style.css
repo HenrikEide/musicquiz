@@ -1,0 +1,72 @@
+body {
+  height: 95vh;
+  max-height: 95vh;
+  overflow: hidden;
+}
+#divBakgrunn {
+  padding: 5px;
+  height: 700px;
+  width: 1520px;
+  background-image: url("images/IMG_0166.jpeg");
+  background-size: cover;
+}
+#quiz {
+  width: auto;
+  height: 100%;
+  position: relative;
+}
+.divBoksGrønn {
+  padding: 10px;
+  position: absolute;
+  width: 165px;
+  height: 65px;
+  margin-top: 20px;
+  border-radius: 25px;
+  background-color: rgb(255, 179, 255);
+  text-align: center;
+}
+
+.divBoksBlå {
+  position: absolute;
+  width: 185px;
+  margin-right: 5px;
+  height: 75px;
+  border-radius: 25px;
+  background-color: rgb(255, 219, 73);
+  text-align: center;
+}
+audio {
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 20px;
+  margin-top: 0;
+  font-size: 5px;
+}
+
+.points {
+  position: inherit;
+  background-color: inherit;
+  border: 0px;
+  bottom: 5px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#audio-player::-webkit-media-controls {
+  background-color: rgb(156, 255, 156);
+}
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+h3 {
+  margin-top: 25px;
+}
+h2 {
+  margin: 0;
+}
