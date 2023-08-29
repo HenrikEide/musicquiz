@@ -13,7 +13,7 @@
     </div>
   </body>
   <script>
-    let quiz = document.getElementById("quiz");
+    const quiz = document.getElementById("quiz");
 
     const kategorier = [
       "Disney",
@@ -36,7 +36,7 @@
     for (let i = 1; i <= 8; i++) {
       temp = [];
       for (let j = 1; j <= 6; j++) {
-        let songlink = "songs/kat" + i + "q" + j * 100 + ".mp3";
+        let songlink = `songs/kat${i}q${j * 100}.mp3`;
         temp.push(songlink);
       }
       songs.push(temp);
@@ -47,7 +47,7 @@
       div.className = "divBoksBlå";
       div.style.left = i * 190;
       div.style.top = 15;
-      div.innerHTML = "<h3>" + kategorier[i] + "</h3>";
+      div.innerHTML = `<h3>${kategorier[i]}</h3>`;
       div.setAttribute("farge", "blue");
 
       div.onclick = Trykk;
@@ -71,7 +71,7 @@
         div.appendChild(audio);
 
         let poeng = document.createElement("div");
-        poeng.innerHTML = "<h2>" + j * 100 + "</h2>";
+        poeng.innerHTML = `<h2>${j * 100}</h2>`;
         poeng.className = "points";
         div.appendChild(poeng);
 
