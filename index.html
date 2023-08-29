@@ -44,9 +44,8 @@
 
     for (let i = 0; i < 8; i++) {
       let div = document.createElement("div");
-      div.className = "divBoksBlå";
+      div.className = "category";
       div.style.left = i * 190;
-      div.style.top = 15;
       div.innerHTML = `<h3>${kategorier[i]}</h3>`;
       div.setAttribute("farge", "blue");
 
@@ -57,7 +56,7 @@
     for (let i = 0; i < 8; i++) {
       for (let j = 1; j < 6; j++) {
         let div = document.createElement("div");
-        div.className = "divBoksGrønn";
+        div.className = "question";
         div.style.left = i * 190;
         div.style.top = j * 95;
         div.setAttribute("farge", "pink");
