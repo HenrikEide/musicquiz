@@ -25,11 +25,11 @@
       "Norsk på norsk",
     ];
     const colors = {
-      green: ["yellow", "rgb(255, 252, 158)"],
-      yellow: ["purple", "rgb(255, 156, 156)"],
-      purple: ["blue", "rgb(184, 246, 255)"],
-      blue: ["pink", "rgb(158, 244, 152)"],
-      pink: ["green", "rgb(255, 179, 255)"],
+      pink: ["yellow", "rgb(255, 252, 158)"],
+      yellow: ["red", "rgb(255, 156, 156)"],
+      red: ["blue", "rgb(184, 246, 255)"],
+      blue: ["green", "rgb(158, 244, 152)"],
+      green: ["pink", "rgb(255, 179, 255)"],
     };
     let songs = [];
     for (let i = 1; i <= 8; i++) {
@@ -59,7 +59,7 @@
         div.className = "divBoksGrønn";
         div.style.left = i * 190;
         div.style.top = j * 95;
-        div.setAttribute("farge", "green");
+        div.setAttribute("farge", "pink");
         div.onclick = Trykk;
 
 		let audio = document.createElement("audio");
