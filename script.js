@@ -34,7 +34,6 @@ for (let i = 0; i < 8; i++) {
   div.innerHTML = `<h3>${kategorier[i]}</h3>`;
   div.setAttribute("farge", "blue");
 
-  div.onclick = Trykk;
   quiz.appendChild(div);
 }
 
